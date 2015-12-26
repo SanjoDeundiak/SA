@@ -3,6 +3,6 @@ function [] = Test()
 %   Detailed explanation goes here
 
     data = importdata('inputData.csv');
-    
+    [D PD] = allfitdist(data.data(:,6), 'PDF');
 end
 
