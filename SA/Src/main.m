@@ -1,35 +1,63 @@
 function [hf1, hf2]=main()
     hf1=@filenameChangeNotify;
-    hf2=@process;
-end
-
-function [ ] = filenameChangeNotify ( filename ) 
-    data = importData(filename);
-end
-
-function [ R1, R2, R3, Y1, Y2, Y3 ] = process( startPos )
-    N02 = 40;
-    N03 = 10;
-
-    % Predict X
-    XaccVoltageKnown = data.data(startPos:startPos + N02 - 1, 3);
-    XcrankshaftKnown = data.data(startPos:startPos + N02 - 1, 4);
-    XadditionalGeneratorPowerKnown = data.data(startPos:startPos + N02 - 1, 5);
-    XconsumptionPowerKnown = data.data(startPos:startPos + N02 - 1, 6);
-
-    % Compute FZ
-    YgridVoltageKnown = data.data(startPos:startPos + N02 - 1, 7);
-    YfuelKnown = data.data(startPos:startPos + N02 - 1, 8);
-    YaccVoltageKnown = data.data(startPos:startPos + N02 - 1, 9);
-
-    % Predict Y
+    hf2=@computeDataForStartPos;
     
-    % Compute risk
-    R1 = 1.0; R2 = 1.0; R3 = 1.0;
-    
-    %Compute risk resource
+    function [ ] = filenameChangeNotify ( filename ) 
+        global Number;
+        global TimeStamp;
+        global AccVoltage;
+        global Crankshaft;
+        global Additionalgeneratorpower;
+        global Consumptionpower;
+        global Gridvoltage;
+        global Fuel;
+        global Accvoltage;
+        
+        [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename);
+    end
 
-    Y1 = data.data(startPos:startPos + N02 + N03 - 1, 7);
-    Y2 = data.data(startPos:startPos + N02 + N03 - 1, 8);
-    Y3 = data.data(startPos:startPos + N02 + N03 - 1, 9);
+    function [ R1, R2, R3, Y1, Y2, Y3 ] = computeDataForStartPos( startPos )
+        global Number;
+        global TimeStamp;
+        global AccVoltage;
+        global Crankshaft;
+        global Additionalgeneratorpower;
+        global Consumptionpower;
+        global Gridvoltage;
+        global Fuel;
+        global Accvoltage;
+        
+        N02 = 40;
+        N03 = 10;
+
+        % Predict X
+        XaccVoltageKnown = AccVoltage(startPos:startPos + N02 - 1);
+        XcrankshaftKnown = Crankshaft(startPos:startPos + N02 - 1);
+        XadditionalGeneratorPowerKnown = Additionalgeneratorpower(startPos:startPos + N02 - 1);
+        XconsumptionPowerKnown = Consumptionpower(startPos:startPos + N02 - 1);
+
+        XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
+        XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
+        XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
+        XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
+
+        % Compute FZ
+        YgridVoltageKnown = Gridvoltage(startPos:startPos + N02 - 1);
+        YfuelKnown = Fuel(startPos:startPos + N02 - 1);
+        YaccVoltageKnown = Accvoltage(startPos:startPos + N02 - 1);
+
+        % Predict Y
+
+        % Compute risk
+        R1 = 1.0; R2 = 1.0; R3 = 1.0;
+
+        %Compute risk resource
+
+        Y1 = YgridVoltageKnown;
+        Y2 = YfuelKnown;
+        Y3 = YaccVoltageKnown;
+    end
 end
+
+
+

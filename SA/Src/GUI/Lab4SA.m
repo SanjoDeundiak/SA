@@ -110,8 +110,8 @@ function DataLoad_Callback(hObject, eventdata, handles)
     
     maxSlider = size(Number,1);
     
-    set(handles.TimeSlider,'Min',1);
-    set(handles.TimeSlider,'Value',1);
+    set(handles.TimeSlider,'Min',0);
+    set(handles.TimeSlider,'Value',0);
     set(handles.TimeSlider,'Max',maxSlider);
     set(handles.TimeSlider, 'SliderStep', [1/(maxSlider-1) , 1/(maxSlider-1) ]);
     
@@ -207,7 +207,7 @@ x=max(1, value-10):1:value+10;
 
 global hf2;
 
-[ R1, R2, R3, Y1, Y2, Y3 ] = process( max(1, value-10) );
+[ R1, R2, R3, Y1, Y2, Y3 ] = hf2( max(1, value-10) );
 
 plot(handles.Y3Axes,x,Y1(x));
 plot(handles.Y2Axes,x,Y2(x));
@@ -246,15 +246,23 @@ value = str2num(get(handles.SliderValue,'String'));
 value = value+1;
 set(handles.SliderValue,'String',value);
 set(handles.TimeSlider,'String',value);
-x=max(1,value-10):1:value+10;
+
 global hf2;
-[ R1, R2, R3, Y1, Y2, Y3 ] = hf2(max(1,value-10));
+[ R1, R2, R3, Y1, Y2, Y3 ] = hf2(value);
+x=1:size(Y1);
+
+axis manual
 plot(handles.Y1Axes,x,Y1(x));
-set(handles.Y1RiskValue,'String',R1);
+axis manual
 plot(handles.Y2Axes,x,Y2(x));
-set(handles.Y2RiskValue,'String',R2);
+axis manual
 plot(handles.Y3Axes,x,Y3(x));
+
+set(handles.Y1RiskValue,'String',R1);
+set(handles.Y2RiskValue,'String',R2);
 set(handles.Y3RiskValue,'String',R3);
+
+
 
 
 % --- Executes on button press in PauseButton.

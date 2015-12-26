@@ -1,8 +1,7 @@
 function [ res ] = ArimaP( data,K )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
- Mdl = arima('Constant',1,'D',1,'Seasonality',10,...
-    'MALags',3,'SMALags',1); 
+ Mdl = arima(); 
    y=data;
 %past_data = z1(1:40);
 %future_inputs = z1(41:end);
