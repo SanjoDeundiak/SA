@@ -248,7 +248,7 @@ set(handles.SliderValue,'String',value);
 set(handles.TimeSlider,'String',value);
 x=max(1,value-10):1:value+10;
 global hf2;
-[ R1, R2, R3, Y1, Y2, Y3 ] = hf2(max(1,value-10))
+[ R1, R2, R3, Y1, Y2, Y3 ] = hf2(max(1,value-10));
 plot(handles.Y1Axes,x,Y1(x));
 set(handles.Y1RiskValue,'String',R1);
 plot(handles.Y2Axes,x,Y2(x));
