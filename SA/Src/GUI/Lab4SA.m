@@ -85,6 +85,8 @@ function DataLoad_Callback(hObject, eventdata, handles)
                         'Pick a file');
  fullpathname=strcat(pathname, filename);
  
+ global hf1;
+ global hf2;
  [hf1, hf2] = main();
  
  hf1 ( fullpathname ); 
@@ -202,12 +204,14 @@ set(handles.TimeSlider,'Value',round(get(handles.TimeSlider,'Value')));
 set(handles.SliderValue,'String',get(handles.TimeSlider,'Value'));
 value = str2num(get(handles.SliderValue,'String'));
 x=max(1, value-10):1:value+10;
-global Accvoltage;
-plot(handles.Y3Axes,x,Accvoltage(x));
-global Fuel;
-plot(handles.Y2Axes,x,Fuel(x));
-global Gridvoltage;
-plot(handles.Y1Axes,x,Gridvoltage(x));
+
+global hf2;
+
+[ R1, R2, R3, Y1, Y2, Y3 ] = process( max(1, value-10) );
+
+plot(handles.Y3Axes,x,Y1(x));
+plot(handles.Y2Axes,x,Y2(x));
+plot(handles.Y1Axes,x,Y3(x));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -229,25 +233,25 @@ function PlayButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 global t;
-t = timer('ExecutionMode','fixedDelay','Period',1,'TimerFcn',@DrawGraph);
+t = timer('ExecutionMode','fixedDelay','Period',1,'TimerFcn',{ @DrawGraph, handles });
 % t.timerFcn = @()DrawGraph();
 start(t);
 global value;
 value = 1;
 
-function [] = DrawGraph(hObject, eventdata)
+function [] = DrawGraph(hObject, eventdata, handles)
 
 global value;
 %value = str2num(get(handles.SliderValue,'String'));
 value = value+1;
 value
 x=max(1,value-10):1:value+10;
-% global Accvoltage;
-% plot(handles.Y3Axes,x,Accvoltage(x));
-% global Fuel;
-% plot(handles.Y2Axes,x,Fuel(x));
-% global Gridvoltage;
-% plot(handles.Y1Axes,x,Gridvoltage(x));
+global Accvoltage;
+plot(handles.Y3Axes,x,Accvoltage(x));
+global Fuel;
+plot(handles.Y2Axes,x,Fuel(x));
+global Gridvoltage;
+plot(handles.Y1Axes,x,Gridvoltage(x));
 
 
 % --- Executes on button press in PauseButton.
@@ -265,7 +269,9 @@ function StopButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
+global t;
+stop(t);
+delete(t);
 
 function SliderValue_Callback(hObject, eventdata, handles)
 % hObject    handle to SliderValue (see GCBO)
