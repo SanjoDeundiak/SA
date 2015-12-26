@@ -3,8 +3,20 @@ function [] = Test()
 %   Detailed explanation goes here
 
     data = importdata('inputData.csv');
-    x = data.data(750:850, 7);
-    
-    [r1 r2] = RiskNormal(x, 11.7, 10.5)
+
+   % model=arima(data.data(:,6),4);
+   Mdl = arima('Constant',0,'D',1,'Seasonality',12,...
+    'MALags',1,'SMALags',12); 
+   z1=data.data(:,4);
+%past_data = z1(1:40);
+%future_inputs = z1(41:end);
+%model = polyest(z1, [2 2 2 0 0 1],'IntegrateNoise',true);
+
+K=10;
+yf=forecast(model,past_data,K);
+a(:,1)=yf;
+a(:,2)=z1(41:50); 
+ a   
+
 end
 

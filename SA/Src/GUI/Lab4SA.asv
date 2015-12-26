@@ -83,6 +83,7 @@ function DataLoad_Callback(hObject, eventdata, handles)
 [filename, pathname] = uigetfile( ...
                        {'*.csv';'*.*'}, ...
                         'Pick a file');
+              
  fullpathname=strcat(pathname, filename);
  
 % indicate that we use a global variable
@@ -194,7 +195,7 @@ function TimeSlider_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-set()
+set(handles.TimeSlider,'Value',round(get(handles.TimeSlider,'Value')));
 set(handles.SliderValue,'String',get(handles.TimeSlider,'Value'));
 
 
