@@ -85,6 +85,10 @@ function DataLoad_Callback(hObject, eventdata, handles)
                         'Pick a file');
  fullpathname=strcat(pathname, filename);
  
+ [hf1, hf2] = main();
+ 
+ hf1 ( fullpathname ); 
+ 
 % indicate that we use a global variable
     global Number;
     global TimeStamp;
@@ -196,6 +200,14 @@ function TimeSlider_Callback(hObject, eventdata, handles)
 
 set(handles.TimeSlider,'Value',round(get(handles.TimeSlider,'Value')));
 set(handles.SliderValue,'String',get(handles.TimeSlider,'Value'));
+value = str2num(get(handles.SliderValue,'String'));
+x=max(1, value-10):1:value+10;
+global Accvoltage;
+plot(handles.Y3Axes,x,Accvoltage(x));
+global Fuel;
+plot(handles.Y2Axes,x,Fuel(x));
+global Gridvoltage;
+plot(handles.Y1Axes,x,Gridvoltage(x));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -216,12 +228,35 @@ function PlayButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+global t;
+t = timer('ExecutionMode','fixedDelay','Period',1,'TimerFcn',@DrawGraph);
+% t.timerFcn = @()DrawGraph();
+start(t);
+global value;
+value = 1;
+
+function [] = DrawGraph(hObject, eventdata)
+
+global value;
+%value = str2num(get(handles.SliderValue,'String'));
+value = value+1;
+value
+x=max(1,value-10):1:value+10;
+% global Accvoltage;
+% plot(handles.Y3Axes,x,Accvoltage(x));
+% global Fuel;
+% plot(handles.Y2Axes,x,Fuel(x));
+% global Gridvoltage;
+% plot(handles.Y1Axes,x,Gridvoltage(x));
+
 
 % --- Executes on button press in PauseButton.
 function PauseButton_Callback(hObject, eventdata, handles)
 % hObject    handle to PauseButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global t;
+delete(t);
 
 
 % --- Executes on button press in StopButton.
@@ -239,6 +274,21 @@ function SliderValue_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of SliderValue as text
 %        str2double(get(hObject,'String')) returns contents of SliderValue as a double
+
+global value;
+value = str2num(get(handles.SliderValue,'String'));
+set(handles.TimeSlider,'Value',value);
+x=max(1,value-10):1:value+10;
+global Accvoltage;
+plot(handles.Y3Axes,x,Accvoltage(x));
+global Fuel;
+plot(handles.Y2Axes,x,Fuel(x));
+global Gridvoltage;
+plot(handles.Y1Axes,x,Gridvoltage(x));
+
+
+
+
 
 
 % --- Executes during object creation, after setting all properties.
