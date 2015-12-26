@@ -228,21 +228,26 @@ function PlayButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global play;
-play = true;
-global Accvoltage;
-global Fuel;
-global Gridvoltage;
-while (play)    
-    set(handles.TimeSlider,'Value',get(handles.TimeSlider,'Value')+1);
-    set(handles.SliderValue,'String',get(handles.TimeSlider,'Value'));
-    value = str2num(get(handles.SliderValue,'String'));
-    x=max(1,value-10):1:value+10;    
-    plot(handles.Y3Axes,x,Accvoltage(x));    
-    plot(handles.Y2Axes,x,Fuel(x));    
-    plot(handles.Y1Axes,x,Gridvoltage(x));
-end
+global t;
+t = timer('ExecutionMode','fixedDelay','Period',1,'TimerFcn',@DrawGraph);
+% t.timerFcn = @()DrawGraph();
+start(t);
+global value;
+value = 1;
 
+function [] = DrawGraph(hObject, eventdata)
+
+global value;
+%value = str2num(get(handles.SliderValue,'String'));
+value = value+1;
+value
+x=max(1,value-10):1:value+10;
+% global Accvoltage;
+% plot(handles.Y3Axes,x,Accvoltage(x));
+% global Fuel;
+% plot(handles.Y2Axes,x,Fuel(x));
+% global Gridvoltage;
+% plot(handles.Y1Axes,x,Gridvoltage(x));
 
 
 % --- Executes on button press in PauseButton.
@@ -250,8 +255,8 @@ function PauseButton_Callback(hObject, eventdata, handles)
 % hObject    handle to PauseButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global play;
-play = false;
+global t;
+delete(t);
 
 
 % --- Executes on button press in StopButton.
@@ -270,6 +275,7 @@ function SliderValue_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of SliderValue as text
 %        str2double(get(hObject,'String')) returns contents of SliderValue as a double
 
+global value;
 value = str2num(get(handles.SliderValue,'String'));
 set(handles.TimeSlider,'Value',value);
 x=max(1,value-10):1:value+10;
