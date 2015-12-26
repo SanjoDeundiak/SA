@@ -24,8 +24,10 @@ function [ R1, R2, R3, Y1, Y2, Y3 ] = process( startPos )
 
     % Predict Y
     
-    
+    % Compute risk
     R1 = 1.0; R2 = 1.0; R3 = 1.0;
+    
+    %Compute risk resource
 
     Y1 = data.data(startPos:startPos + N02 + N03 - 1, 7);
     Y2 = data.data(startPos:startPos + N02 + N03 - 1, 8);

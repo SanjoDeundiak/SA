@@ -265,7 +265,9 @@ function StopButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
+global t;
+stop(t);
+delete(t);
 
 function SliderValue_Callback(hObject, eventdata, handles)
 % hObject    handle to SliderValue (see GCBO)
