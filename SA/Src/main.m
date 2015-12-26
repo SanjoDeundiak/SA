@@ -1,3 +1,12 @@
+function [hf1, hf2]=foo()
+    hf1=@filenameChangeNotify;
+    hf2=@process;
+end
+
+function [ ] = filenameChangeNotify ( filename ) 
+    data = importData(filename);
+end
+
 function [ R1, R2, R3, Y1, Y2, Y3 ] = process( startPos )
     N02 = 40;
     N03 = 10;
@@ -21,6 +30,4 @@ function [ R1, R2, R3, Y1, Y2, Y3 ] = process( startPos )
     Y1 = data.data(startPos:startPos + N02 + N03 - 1, 7);
     Y2 = data.data(startPos:startPos + N02 + N03 - 1, 8);
     Y3 = data.data(startPos:startPos + N02 + N03 - 1, 9);
-
-function [ ] = filenameChangeNotify ( filename ) 
-    data = importData(filename);
+end
