@@ -22,7 +22,7 @@ function varargout = Lab4SA(varargin)
 
 % Edit the above text to modify the response to help Lab4SA
 
-% Last Modified by GUIDE v2.5 26-Dec-2015 14:26:27
+% Last Modified by GUIDE v2.5 26-Dec-2015 15:26:50
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -90,12 +90,27 @@ function DataLoad_Callback(hObject, eventdata, handles)
     global TimeStamp;
     global AccVoltage;
     global Crankshaft;
-    global Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage;
+    global Additionalgeneratorpower;
+    global Consumptionpower;
+    global Gridvoltage;
+    global Fuel;
+    global Accvoltage;
     
 % assigning data
     [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage]=importData(fullpathname);
+    
 %importing into table
-    set(handles.XTable,'Data',X(3:6));
+    set(handles.XTable,'Data',[AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower]);
+    
+    maxSlider = size(Number,1);
+    
+    set(handles.TimeSlider,'Min',1);
+    set(handles.TimeSlider,'Value',1);
+    set(handles.TimeSlider,'Max',maxSlider);
+    set(handles.TimeSlider, 'SliderStep', [1/(maxSlider-1) , 1/(maxSlider-1) ]);
+    
+    
+    
     
 
 
@@ -179,6 +194,9 @@ function TimeSlider_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
+set()
+set(handles.SliderValue,'String',get(handles.TimeSlider,'Value'));
+
 
 % --- Executes during object creation, after setting all properties.
 function TimeSlider_CreateFcn(hObject, eventdata, handles)
@@ -211,3 +229,26 @@ function StopButton_Callback(hObject, eventdata, handles)
 % hObject    handle to StopButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+
+function SliderValue_Callback(hObject, eventdata, handles)
+% hObject    handle to SliderValue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of SliderValue as text
+%        str2double(get(hObject,'String')) returns contents of SliderValue as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function SliderValue_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to SliderValue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
