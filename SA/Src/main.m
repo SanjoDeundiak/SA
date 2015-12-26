@@ -36,10 +36,10 @@ function [hf1, hf2]=main()
         XadditionalGeneratorPowerKnown = Additionalgeneratorpower(startPos:startPos + N02 - 1);
         XconsumptionPowerKnown = Consumptionpower(startPos:startPos + N02 - 1);
 
-        XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
-        XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
-        XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
-        XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
+        % XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
+        % XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
+        % XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
+        % XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
 
         % Compute FZ
         YgridVoltageKnown = Gridvoltage(startPos:startPos + N02 - 1);

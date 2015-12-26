@@ -251,12 +251,13 @@ global hf2;
 [ R1, R2, R3, Y1, Y2, Y3 ] = hf2(value);
 x=1:size(Y1);
 
-axis manual
 plot(handles.Y1Axes,x,Y1(x));
-axis manual
 plot(handles.Y2Axes,x,Y2(x));
-axis manual
 plot(handles.Y3Axes,x,Y3(x));
+
+handles.Y1Axes.YLim = [8 14];
+handles.Y2Axes.YLim = [0 50];
+handles.Y3Axes.YLim = [8 14];
 
 set(handles.Y1RiskValue,'String',R1);
 set(handles.Y2RiskValue,'String',R2);
