@@ -1,4 +1,4 @@
-function [hf1, hf2]=foo()
+function [hf1, hf2]=main()
     hf1=@filenameChangeNotify;
     hf2=@process;
 end
