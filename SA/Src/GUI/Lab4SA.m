@@ -242,16 +242,19 @@ value = 1;
 function [] = DrawGraph(hObject, eventdata, handles)
 
 global value;
-%value = str2num(get(handles.SliderValue,'String'));
+value = str2num(get(handles.SliderValue,'String'));
 value = value+1;
-value
+set(handles.SliderValue,'String',value);
+set(handles.TimeSlider,'String',value);
 x=max(1,value-10):1:value+10;
-global Accvoltage;
-plot(handles.Y3Axes,x,Accvoltage(x));
-global Fuel;
-plot(handles.Y2Axes,x,Fuel(x));
-global Gridvoltage;
-plot(handles.Y1Axes,x,Gridvoltage(x));
+global hf2;
+[ R1, R2, R3, Y1, Y2, Y3 ] = hf2(max(1,value-10))
+plot(handles.Y1Axes,x,Y1(x));
+set(handles.Y1RiskValue,'String',R1);
+plot(handles.Y2Axes,x,Y2(x));
+set(handles.Y2RiskValue,'String',R2);
+plot(handles.Y3Axes,x,Y3(x));
+set(handles.Y3RiskValue,'String',R3);
 
 
 % --- Executes on button press in PauseButton.
