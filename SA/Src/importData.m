@@ -1,4 +1,4 @@
-function [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importfile(filename, startRow, endRow)
+function [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename, startRow, endRow)
 %IMPORTFILE Import numeric data from a text file as column vectors.
 %   [NUMBER,TIMESTAMP,ACCVOLTAGE,CRANKSHAFT,ADDITIONALGENERATORPOWER,CONSUMPTIONPOWER,GRIDVOLTAGE,FUEL,ACCVOLTAGE]
 %   = IMPORTFILE(FILENAME) Reads data from text file FILENAME for the
