@@ -24,4 +24,3 @@ function [ R1, R2, R3, Y1, Y2, Y3 ] = process( startPos )
 
 function [ ] = filenameChangeNotify ( filename ) 
     data = importData(filename);
-end
