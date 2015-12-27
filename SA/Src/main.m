@@ -36,35 +36,34 @@ function [hf1, hf2]=main()
         XadditionalGeneratorPowerKnown = Additionalgeneratorpower(startPos:startPos + N02 - 1);
         XconsumptionPowerKnown = Consumptionpower(startPos:startPos + N02 - 1);
 
-        %XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
-        %XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
-        %XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
-        %XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
+        % XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
+        % XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
+        % XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
+        % XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
         
-        XaccVoltage = [XaccVoltageKnown,XaccVoltagePredict];
-        Xcrankshaft = [XcrankshaftKnown,XcrankshaftPredict];
-        XadditionalGeneratorPower = [XadditionalGeneratorPowerKnown,XadditionalGeneratorPowerPredict];
-        XconsumptionPower = [XconsumptionPowerKnown,XconsumptionPowerPredict];
-
-        
+        XaccVoltagePredict = AccVoltage(startPos + N02:startPos + N02 + N03 - 1);
+        XcrankshaftPredict = Crankshaft(startPos + N02 - 1:startPos + N02 + N03 - 1);
+        XadditionalGeneratorPowerPredict = Additionalgeneratorpower(startPos + N02:startPos + N02 + N03 - 1);
+        XconsumptionPowerPredict = Consumptionpower(startPos + N02:startPos + N02 + N03 - 1);
 
         % Compute FZ
         YgridVoltageKnown = Gridvoltage(startPos:startPos + N02 - 1);
         YfuelKnown = Fuel(startPos:startPos + N02 - 1);
         YaccVoltageKnown = Accvoltage(startPos:startPos + N02 - 1);
-        
-        %Predict Y
+
+        % Predict Y
+        YgridVoltagePredict = Gridvoltage(startPos:startPos + N02 - 1);
+        YfuelPredict = Fuel(startPos:startPos + N02 - 1);
+        YaccVoltagePredict = Accvoltage(startPos:startPos + N02 - 1);
 
         % Compute risk
         R1 = 1.0; R2 = 1.0; R3 = 1.0;
 
         %Compute risk resource
 
-        Y1 = YgridVoltageKnown;
-        Y2 = YfuelKnown;
-        Y3 = YaccVoltageKnown;
+        Y1 = vertcat(YgridVoltageKnown, YgridVoltagePredict);
+        Y2 = vertcat(YfuelKnown, YfuelPredict);
+        Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict);
     end
 end
-
-
 
