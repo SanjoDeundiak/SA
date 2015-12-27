@@ -41,10 +41,10 @@ function [hf1, hf2]=main()
         %XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
         %XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
         
-        XaccVoltage = [XaccVoltageKnown,XaccVoltagePredict];
-        Xcrankshaft = [XcrankshaftKnown,XcrankshaftPredict];
-        XadditionalGeneratorPower = [XadditionalGeneratorPowerKnown,XadditionalGeneratorPowerPredict];
-        XconsumptionPower = [XconsumptionPowerKnown,XconsumptionPowerPredict];
+        %XaccVoltage = [XaccVoltageKnown,XaccVoltagePredict];
+        %Xcrankshaft = [XcrankshaftKnown,XcrankshaftPredict];
+        %XadditionalGeneratorPower = [XadditionalGeneratorPowerKnown,XadditionalGeneratorPowerPredict];
+        %XconsumptionPower = [XconsumptionPowerKnown,XconsumptionPowerPredict];
 
         
 

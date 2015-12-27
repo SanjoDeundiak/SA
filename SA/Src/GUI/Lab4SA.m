@@ -202,17 +202,7 @@ function TimeSlider_Callback(hObject, eventdata, handles)
 
 set(handles.TimeSlider,'Value',round(get(handles.TimeSlider,'Value')));
 set(handles.SliderValue,'String',get(handles.TimeSlider,'Value'));
-value = str2num(get(handles.SliderValue,'String'));
-x=max(1, value-10):1:value+10;
-
-global hf2;
-
-[ R1, R2, R3, Y1, Y2, Y3 ] = hf2( max(1, value-10) );
-
-plot(handles.Y3Axes,x,Y1(x));
-plot(handles.Y2Axes,x,Y2(x));
-plot(handles.Y1Axes,x,Y3(x));
-
+DrawGraph(hObject, eventdata, handles);
 
 % --- Executes during object creation, after setting all properties.
 function TimeSlider_CreateFcn(hObject, eventdata, handles)
@@ -249,11 +239,11 @@ set(handles.TimeSlider,'String',value);
 
 global hf2;
 [ R1, R2, R3, Y1, Y2, Y3 ] = hf2(value);
-x=1:size(Y1);
+x=value:value+size(Y1)-1;
 
-plot(handles.Y1Axes,x,Y1(x));
-plot(handles.Y2Axes,x,Y2(x));
-plot(handles.Y3Axes,x,Y3(x));
+plot(handles.Y1Axes,x,Y1);
+plot(handles.Y2Axes,x,Y2);
+plot(handles.Y3Axes,x,Y3);
 
 handles.Y1Axes.YLim = [8 14];
 handles.Y2Axes.YLim = [0 50];
@@ -296,14 +286,7 @@ function SliderValue_Callback(hObject, eventdata, handles)
 global value;
 value = str2num(get(handles.SliderValue,'String'));
 set(handles.TimeSlider,'Value',value);
-x=max(1,value-10):1:value+10;
-global Accvoltage;
-plot(handles.Y3Axes,x,Accvoltage(x));
-global Fuel;
-plot(handles.Y2Axes,x,Fuel(x));
-global Gridvoltage;
-plot(handles.Y1Axes,x,Gridvoltage(x));
-
+Drawgraph(hObject, eventdata, handles);
 
 
 
