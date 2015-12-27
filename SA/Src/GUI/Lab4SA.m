@@ -221,7 +221,7 @@ function PlayButton_Callback(hObject, eventdata, handles)
 % hObject    handle to PlayButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+set(handles.PlayButton,'Enable','inactive');
 global t;
 t = timer('ExecutionMode','fixedDelay','Period',str2num(get(handles.FreqValue,'String')),'TimerFcn',{ @DrawGraph, handles });
 % t.timerFcn = @()DrawGraph();
@@ -278,6 +278,7 @@ function PauseButton_Callback(hObject, eventdata, handles)
 % hObject    handle to PauseButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.PlayButton,'Enable','on');
 global t;
 delete(t);
 
