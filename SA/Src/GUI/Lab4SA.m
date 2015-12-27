@@ -238,7 +238,7 @@ set(handles.SliderValue,'String',value);
 set(handles.TimeSlider,'Value',value);
 
 global hf2;
-[ R1, R2, R3, Y1, Y2, Y3 ] = hf2(value);
+[ R1, Y1, Y2, Y3 ] = hf2(value);
 x=value:value+size(Y1)-1;
 
         global Gridvoltage;
@@ -260,6 +260,13 @@ handles.Y3Axes.YLim = [8 14];
 handles.Y1Axes.XLim = [value, value+size(Y1,1)-1];
 handles.Y2Axes.XLim = [value, value+size(Y1,1)-1];
 handles.Y3Axes.XLim = [value, value+size(Y1,1)-1];
+
+set(handles.Risk1,'Text',R1(1));
+set(handles.Risk2,'Text',R1(2));
+set(handles.Risk3,'Text',R1(3));
+set(handles.Risk4,'Text',R1(4));
+set(handles.Risk5,'Text',R1(5));
+set(handles.Risk6,'Text',R1(6));
 
 
 
