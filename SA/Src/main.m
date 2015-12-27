@@ -70,16 +70,20 @@ function [hf1, hf2]=main()
         [riskFuelN, riskFuelA ] = RiskNormal( YfuelPredict, YFuelN, YFuelA );
 
         
-        R1N = max(1, 1 - (1 - 2 * riskAccVoltageN) * (1 - 2 * riskGridVoltageN) * (1 - 2 * riskFuelN));
-        R1A = max(1, 1 - (1 - 2 * riskAccVoltageA) * (1 - 2 * riskGridVoltageA) * (1 - 2 * riskFuelA));
+        R1N = min(1, 1 - (1 - 2 * riskAccVoltageN) * (1 - 2 * riskGridVoltageN) * (1 - 2 * riskFuelN));
+        R1A = min(1, 1 - (1 - 2 * riskAccVoltageA) * (1 - 2 * riskGridVoltageA) * (1 - 2 * riskFuelA));
         
-        R2N = 1-(1-RiskLinear( YaccVoltageKnown(startPos+N02-1), YAccVoltageN, YAccVoltageA ))*RiskLinear( YGridVoltageKnown(startPos+N02-1), YGridVoltageN,  YGridVoltageA )*RiskLinear( YfuelKnown(startPos+N02-1), YFuelN, YFuelA );
-        R2A = 1.0;
+        R2AK = 1-(1-RiskLinear( YaccVoltageKnown(size(YaccVoltageKnown,1)), YAccVoltageN, YAccVoltageA))...
+            *(1-RiskLinear( YgridVoltageKnown(size(YgridVoltageKnown, 1)), YGridVoltageN,  YGridVoltageA ))...
+            *(1-RiskLinear( YfuelKnown(size(YfuelKnown,1)), YFuelN, YFuelA ));
+        R2AP = 1-(1-RiskLinear( YaccVoltagePredict(size(YaccVoltagePredict,1)), YAccVoltageN, YAccVoltageA))...
+            *(1-RiskLinear( YgridVoltagePredict(size(YgridVoltagePredict, 1)), YGridVoltageN,  YGridVoltageA ))...
+            *(1-RiskLinear( YfuelPredict(size(YfuelPredict,1)), YFuelN, YFuelA ));
         
         R3N = 1.0;
         R3A = 1.0;
         
-        R = [R1N, R1A, R2N, R2A, R3N, R3A];
+        R = [R1N, R1A, R2AK, R2AP, R3N, R3A];
 
         %Compute risk resource
 
