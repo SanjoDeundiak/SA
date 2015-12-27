@@ -22,7 +22,7 @@ function varargout = Lab4SA(varargin)
 
 % Edit the above text to modify the response to help Lab4SA
 
-% Last Modified by GUIDE v2.5 27-Dec-2015 16:34:34
+% Last Modified by GUIDE v2.5 27-Dec-2015 23:47:18
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -75,10 +75,11 @@ guidata(hObject, handles);
     
     maxSlider = size(Number,1);
     
-    set(handles.TimeSlider,'Min',0);
-    set(handles.TimeSlider,'Value',0);
+    set(handles.TimeSlider,'Min',1);
+    set(handles.TimeSlider,'Value',1);
     set(handles.TimeSlider,'Max',maxSlider);
     set(handles.TimeSlider, 'SliderStep', [1/(maxSlider-1) , 1/(maxSlider-1) ]);
+    DrawGraph(hObject, eventdata, handles);
 
 % UIWAIT makes Lab4SA wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -124,10 +125,11 @@ function DataLoad_Callback(hObject, eventdata, handles)
     
     maxSlider = size(Number,1);
     
-    set(handles.TimeSlider,'Min',0);
-    set(handles.TimeSlider,'Value',0);
+    set(handles.TimeSlider,'Min',1);
+    set(handles.TimeSlider,'Value',1);
     set(handles.TimeSlider,'Max',maxSlider);
     set(handles.TimeSlider, 'SliderStep', [1/(maxSlider-1) , 1/(maxSlider-1) ]);
+    DrawGraph(hObject, eventdata, handles);
     
     
     
@@ -244,8 +246,8 @@ global value;
 value = 1;
 
 function timerFunction(hObject, eventdata, handles)
+    DrawGraph(hObject, eventdata, handles);
     adder(hObject, eventdata, handles);
-    DrawGraph(hObject, eventdata, handles)
 
 function [] = adder(hObject, eventdata, handles)
     global value;
@@ -292,8 +294,18 @@ function [] = DrawGraph(hObject, eventdata, handles)
     set(handles.Risk5,'String',R1(5));
     set(handles.Risk6,'String',R1(6));
     
-    (value:value+size(Y1,1)-1)'
-    Y1
+    if (bVoltage==1)
+        set(handles.BVoltage,'String','исправен');
+    else
+        set(handles.BVoltage,'String','неисправен');
+    end
+    
+    if (bFuel==1)
+        set(handles.BFuel,'String','исправен');
+    else
+        set(handles.BFuel,'String','неисправен');
+    end
+   
     set(handles.XTable,'Data',[(value:value+size(Y1,1)-1)',Y1,Y2,Y3,zeros(size(Y1,1),1)]);
 
 
@@ -502,6 +514,52 @@ function Risk6_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function Risk6_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to Risk6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function BFuel_Callback(hObject, eventdata, handles)
+% hObject    handle to BFuel (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of BFuel as text
+%        str2double(get(hObject,'String')) returns contents of BFuel as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function BFuel_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to BFuel (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function BVoltage_Callback(hObject, eventdata, handles)
+% hObject    handle to BVoltage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of BVoltage as text
+%        str2double(get(hObject,'String')) returns contents of BVoltage as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function BVoltage_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to BVoltage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
