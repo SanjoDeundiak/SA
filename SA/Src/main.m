@@ -16,7 +16,7 @@ function [hf1, hf2]=main()
         [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename);
     end
 
-    function [ R1, R2, R3, Y1, Y2, Y3 ] = computeDataForStartPos( startPos )
+    function [ R, Y1, Y2, Y3 ] = computeDataForStartPos( startPos )
         global Number;
         global TimeStamp;
         global AccVoltage;
@@ -56,8 +56,30 @@ function [hf1, hf2]=main()
         YfuelPredict = Fuel(startPos+N02:startPos + N02 + N03 - 1);
         YaccVoltagePredict = Accvoltage(startPos+N02:startPos + N02 + N03 - 1);
 
-        % Compute risk
-        R1 = 1.0; R2 = 1.0; R3 = 1.0;
+        YAccVoltageN = 11.7;
+        YAccVoltageA = 10.5;
+       
+        YGridVoltageN = 11.7;
+        YGridVoltageA = 10.5;
+        
+        YFuelN = 10.0;
+        YFuelA = 5.0;
+        % Compute risk        
+        [riskAccVoltageN, riskAccVoltageA ] = RiskNormal( YaccVoltagePredict, YAccVoltageN, YAccVoltageA );
+        [riskGridVoltageN, riskGridVoltageA ] = RiskNormal( YgridVoltagePredict, YGridVoltageN, YGridVoltageA );
+        [riskFuelN, riskFuelA ] = RiskNormal( YfuelPredict, YFuelN, YFuelA );
+
+        
+        R1N = max(1, 1 - (1 - 2 * riskAccVoltageN) * (1 - 2 * riskGridVoltageN) * (1 - 2 * riskFuelN));
+        R1A = max(1, 1 - (1 - 2 * riskAccVoltageA) * (1 - 2 * riskGridVoltageA) * (1 - 2 * riskFuelA));
+        
+        R2N = 1-(1-RiskLinear( YaccVoltageKnown(startPos+N02-1), YAccVoltageN, YAccVoltageA ))*RiskLinear( YGridVoltageKnown(startPos+N02-1), YGridVoltageN,  YGridVoltageA )*RiskLinear( YfuelKnown(startPos+N02-1), YFuelN, YFuelA );
+        R2A = 1.0;
+        
+        R3N = 1.0;
+        R3A = 1.0;
+        
+        R = [R1N, R1A, R2N, R2A, R3N, R3A];
 
         %Compute risk resource
 
