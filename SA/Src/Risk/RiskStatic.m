@@ -1,5 +1,11 @@
-function riskStaticA = RiskStatic( x, xN, xA )
+function riskStaticA = RiskStatic( x, xOK, xA )
     
-     p = 0.5*arccoth(x/xA)/arccoth(xN/xA);
-     riskStaticA = p;
+    p = ((xOK - x)/(xOK-xA))^2.5;
+    if (x >= xOK)
+        p = 0;
+    end
+    
+    p = min(1, p);
+    
+    riskStaticA = p;
 end

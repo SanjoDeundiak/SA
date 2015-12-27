@@ -80,10 +80,14 @@ function [hf1, hf2]=main()
             *(1-RiskLinear( YgridVoltagePredict(size(YgridVoltagePredict, 1)), YGridVoltageN,  YGridVoltageA ))...
             *(1-RiskLinear( YfuelPredict(size(YfuelPredict,1)), YFuelN, YFuelA ));
         
-        R3N = 1.0;
-        R3A = 1.0;
+        R3AK = 1-(1-RiskStatic( YaccVoltageKnown(size(YaccVoltageKnown,1)), 12.2, YAccVoltageA))...
+            *(1-RiskStatic( YgridVoltageKnown(size(YgridVoltageKnown, 1)), 12.2,  YGridVoltageA ))...
+            *(1-RiskStatic( YfuelKnown(size(YfuelKnown,1)), 15, YFuelA ));
+        R3AP = 1-(1-RiskStatic( YaccVoltagePredict(size(YaccVoltagePredict,1)), 12.2, YAccVoltageA))...
+            *(1-RiskStatic( YgridVoltagePredict(size(YgridVoltagePredict, 1)), 12.2,  YGridVoltageA ))...
+            *(1-RiskStatic( YfuelPredict(size(YfuelPredict,1)), 15, YFuelA ));
         
-        R = [R1N, R1A, R2AK, R2AP, R3N, R3A];
+        R = [R1N, R1A, R2AK, R2AP, R3AK, R3AP];
 
         %Compute risk resource
 
