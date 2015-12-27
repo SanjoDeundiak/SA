@@ -58,35 +58,27 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
-%  global hf1;
-%  global hf2;
-%  [hf1, hf2] = main();
-%  
-%  hf1 ( 'Data\InputData.csv' ); 
+ global hf1;
+ global hf2;
+ [hf1, hf2] = main();
+ 
+ hf1 ( 'Data\InputData.csv' ); 
 %  
 % indicate that we use a global variable
-%     global Number;
-%     global TimeStamp;
-%     global AccVoltage;
-%     global Crankshaft;
-%     global Additionalgeneratorpower;
-%     global Consumptionpower;
-%     global Gridvoltage;
-%     global Fuel;
-%     global Accvoltage;
+    
 %     
 % assigning data
-%     [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage]=importData('Data\InputData.csv');
+     [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage]=importData('Data\InputData.csv');
 %     
 % importing into table
-%     set(handles.XTable,'Data',[AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower]);
-%     
-%     maxSlider = size(Number,1);
-%     
-%     set(handles.TimeSlider,'Min',0);
-%     set(handles.TimeSlider,'Value',0);
-%     set(handles.TimeSlider,'Max',maxSlider);
-%     set(handles.TimeSlider, 'SliderStep', [1/(maxSlider-1) , 1/(maxSlider-1) ]);
+%    set(handles.XTable,'Data',[AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower]);
+    
+    maxSlider = size(Number,1);
+    
+    set(handles.TimeSlider,'Min',0);
+    set(handles.TimeSlider,'Value',0);
+    set(handles.TimeSlider,'Max',maxSlider);
+    set(handles.TimeSlider, 'SliderStep', [1/(maxSlider-1) , 1/(maxSlider-1) ]);
 
 % UIWAIT makes Lab4SA wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -122,15 +114,7 @@ function DataLoad_Callback(hObject, eventdata, handles)
  hf1 ( fullpathname ); 
  
 % indicate that we use a global variable
-    global Number;
-    global TimeStamp;
-    global AccVoltage;
-    global Crankshaft;
-    global Additionalgeneratorpower;
-    global Consumptionpower;
-    global Gridvoltage;
-    global Fuel;
-    global Accvoltage;
+    
     
 % assigning data
     [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage]=importData(fullpathname);
@@ -272,49 +256,45 @@ function [] = adder(hObject, eventdata, handles)
 
 function [] = DrawGraph(hObject, eventdata, handles)
 
-global value;
-value = str2num(get(handles.SliderValue,'String'));
-%value = value+1;
-%set(handles.SliderValue,'String',value);
-%set(handles.TimeSlider,'Value',value);
+    global value;
+    value = str2num(get(handles.SliderValue,'String'));
+    %value = value+1;
+    %set(handles.SliderValue,'String',value);
+    %set(handles.TimeSlider,'Value',value);
 
-global hf2;
-[ R1, Y1, Y2, Y3 ] = hf2(value);
-N02 = 40;
-x=value:value+size(Y1)-1;
-N03 = size(Y1) - N02;
+    global hf2;
+    [ N02,  R1, Y1, Y2, Y3, bVoltage, bFuel ] = hf2(value);
+    x=value:value+size(Y1)-1;
+    N03 = size(Y1) - N02;
 
-        global Gridvoltage;
-        global Fuel;
-        global Accvoltage;
+    global Gridvoltage;
+    global Fuel;
+    global Accvoltage;
         
-% plot(handles.Y1Axes,x(1:N02),Y1(1:N02),'blue');
-% plot(handles.Y1Axes,x(N02:N02 + N03 - 1),Y1(N02:N02 + N03 - 1),'red');
-% plot(handles.Y2Axes,x(1:N02),Y2(1:N02),'blue');
-% plot(handles.Y2Axes,x(N02:N02 + N03 - 1),Y2(N02:N02 + N03 - 1),'red');
-% plot(handles.Y3Axes,x(1:N02),Y3(1:N02),'blue');
-% plot(handles.Y3Axes,x(N02:N02 + N03 - 1),Y3(N02:N02 + N03 - 1),'red');
 
-hold off;
-plot(handles.Y1Axes,x(N02:N02+N03-1),Y1(N02:N02+N03-1),'red',x(1:N02),Y1(1:N02),'blue');
-plot(handles.Y2Axes,x(N02:N02+N03-1),Y2(N02:N02+N03-1),'red',x(1:N02),Y2(1:N02),'blue');
-plot(handles.Y3Axes,x(N02:N02+N03-1),Y3(N02:N02+N03-1),'red',x(1:N02),Y3(1:N02),'blue');
+    plot(handles.Y1Axes,x(N02:N02+N03-1),Y1(N02:N02+N03-1),'red',x(1:N02),Y1(1:N02),'blue');
+    plot(handles.Y2Axes,x(N02:N02+N03-1),Y2(N02:N02+N03-1),'red',x(1:N02),Y2(1:N02),'blue');
+    plot(handles.Y3Axes,x(N02:N02+N03-1),Y3(N02:N02+N03-1),'red',x(1:N02),Y3(1:N02),'blue');
 
 
-handles.Y1Axes.YLim = [8 14];
-handles.Y2Axes.YLim = [0 50];
-handles.Y3Axes.YLim = [8 14];
+    handles.Y1Axes.YLim = [8 14];
+    handles.Y2Axes.YLim = [0 50];
+    handles.Y3Axes.YLim = [8 14];
 
-handles.Y1Axes.XLim = [value, value+size(Y1,1)-1];
-handles.Y2Axes.XLim = [value, value+size(Y1,1)-1];
-handles.Y3Axes.XLim = [value, value+size(Y1,1)-1];
+    handles.Y1Axes.XLim = [value, value+size(Y1,1)-1];
+    handles.Y2Axes.XLim = [value, value+size(Y1,1)-1];
+    handles.Y3Axes.XLim = [value, value+size(Y1,1)-1];
 
-set(handles.Risk1,'String',R1(1));
-set(handles.Risk2,'String',R1(2));
-set(handles.Risk3,'String',R1(3));
-set(handles.Risk4,'String',R1(4));
-set(handles.Risk5,'String',R1(5));
-set(handles.Risk6,'String',R1(6));
+    set(handles.Risk1,'String',R1(1));
+    set(handles.Risk2,'String',R1(2));
+    set(handles.Risk3,'String',R1(3));
+    set(handles.Risk4,'String',R1(4));
+    set(handles.Risk5,'String',R1(5));
+    set(handles.Risk6,'String',R1(6));
+    
+    (value:value+size(Y1,1)-1)'
+    Y1
+    set(handles.XTable,'Data',[(value:value+size(Y1,1)-1)',Y1,Y2,Y3,zeros(size(Y1,1),1)]);
 
 
 

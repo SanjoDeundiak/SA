@@ -2,6 +2,7 @@ function [hf1, hf2]=main()
     hf1=@filenameChangeNotify;
     hf2=@computeDataForStartPos;
     
+    
     function [ ] = filenameChangeNotify ( filename ) 
         global Number;
         global TimeStamp;
@@ -97,7 +98,7 @@ function [hf1, hf2]=main()
         Y2 = vertcat(YfuelKnown, YfuelPredict);
         Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict);
         
-        [b1, b2] = checkDelta(startPos);
+        [b1, b2] = CheckDelta(startPos);
         
         bVoltage = b1;
         bFuel = b2;
