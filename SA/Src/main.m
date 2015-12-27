@@ -16,7 +16,7 @@ function [hf1, hf2]=main()
         [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename);
     end
 
-    function [ R, Y1, Y2, Y3 ] = computeDataForStartPos( startPos )
+    function [ N, R, Y1, Y2, Y3, bVoltage, bFuel ] = computeDataForStartPos( startPos )
         global Number;
         global TimeStamp;
         global AccVoltage;
@@ -29,6 +29,8 @@ function [hf1, hf2]=main()
         
         N02 = 40;
         N03 = 10;
+        
+        N = N02;
 
         % Predict X
         XaccVoltageKnown = AccVoltage(startPos:startPos + N02 - 1);
@@ -94,6 +96,11 @@ function [hf1, hf2]=main()
         Y1 = vertcat(YgridVoltageKnown, YgridVoltagePredict);
         Y2 = vertcat(YfuelKnown, YfuelPredict);
         Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict);
+        
+        [b1, b2] = checkDelta(startPos);
+        
+        bVoltage = b1;
+        bFuel = b2;
         
         % Y1 = YgridVoltageKnown;
         % Y2 = YfuelKnown;
