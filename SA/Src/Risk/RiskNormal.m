@@ -1,6 +1,6 @@
 function [ riskNormalN, riskNormalA ] = RiskNormal( x, xN, xA )
     
-    pd = fitdist(x, 'Normal');
+    pd = fitdist(x(:,1), 'Normal');
     m = pd.mu; s = pd.sigma;
 
     riskNormalN = 0.5 - erf((m - xN)/s)/2;

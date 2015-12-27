@@ -261,12 +261,12 @@ handles.Y1Axes.XLim = [value, value+size(Y1,1)-1];
 handles.Y2Axes.XLim = [value, value+size(Y1,1)-1];
 handles.Y3Axes.XLim = [value, value+size(Y1,1)-1];
 
-set(handles.Risk1,'Text',R1(1));
-set(handles.Risk2,'Text',R1(2));
-set(handles.Risk3,'Text',R1(3));
-set(handles.Risk4,'Text',R1(4));
-set(handles.Risk5,'Text',R1(5));
-set(handles.Risk6,'Text',R1(6));
+set(handles.Risk1,'String',R1(1));
+set(handles.Risk2,'String',R1(2));
+set(handles.Risk3,'String',R1(3));
+set(handles.Risk4,'String',R1(4));
+set(handles.Risk5,'String',R1(5));
+set(handles.Risk6,'String',R1(6));
 
 
 
