@@ -36,17 +36,24 @@ function [hf1, hf2]=main()
         XadditionalGeneratorPowerKnown = Additionalgeneratorpower(startPos:startPos + N02 - 1);
         XconsumptionPowerKnown = Consumptionpower(startPos:startPos + N02 - 1);
 
-        % XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
-        % XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
-        % XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
-        % XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
+        %XaccVoltagePredict = ArimaP(XaccVoltageKnown, N03);
+        %XcrankshaftPredict = ArimaP(XcrankshaftKnown, N03);
+        %XadditionalGeneratorPowerPredict = ArimaP(XadditionalGeneratorPowerKnown, N03);
+        %XconsumptionPowerPredict = ArimaP(XconsumptionPowerKnown, N03);
+        
+        XaccVoltage = [XaccVoltageKnown,XaccVoltagePredict];
+        Xcrankshaft = [XcrankshaftKnown,XcrankshaftPredict];
+        XadditionalGeneratorPower = [XadditionalGeneratorPowerKnown,XadditionalGeneratorPowerPredict];
+        XconsumptionPower = [XconsumptionPowerKnown,XconsumptionPowerPredict];
+
+        
 
         % Compute FZ
         YgridVoltageKnown = Gridvoltage(startPos:startPos + N02 - 1);
         YfuelKnown = Fuel(startPos:startPos + N02 - 1);
         YaccVoltageKnown = Accvoltage(startPos:startPos + N02 - 1);
-
-        % Predict Y
+        
+        %Predict Y
 
         % Compute risk
         R1 = 1.0; R2 = 1.0; R3 = 1.0;
