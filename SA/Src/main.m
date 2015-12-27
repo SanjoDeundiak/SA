@@ -52,9 +52,9 @@ function [hf1, hf2]=main()
         YaccVoltageKnown = Accvoltage(startPos:startPos + N02 - 1);
 
         % Predict Y
-        YgridVoltagePredict = Gridvoltage(startPos:startPos + N02 - 1);
-        YfuelPredict = Fuel(startPos:startPos + N02 - 1);
-        YaccVoltagePredict = Accvoltage(startPos:startPos + N02 - 1);
+        YgridVoltagePredict = Gridvoltage(startPos+N02:startPos + N02 + N03 - 1);
+        YfuelPredict = Fuel(startPos+N02:startPos + N02 + N03 - 1);
+        YaccVoltagePredict = Accvoltage(startPos+N02:startPos + N02 + N03 - 1);
 
         % Compute risk
         R1 = 1.0; R2 = 1.0; R3 = 1.0;
@@ -64,6 +64,10 @@ function [hf1, hf2]=main()
         Y1 = vertcat(YgridVoltageKnown, YgridVoltagePredict);
         Y2 = vertcat(YfuelKnown, YfuelPredict);
         Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict);
+        
+        % Y1 = YgridVoltageKnown;
+        % Y2 = YfuelKnown;
+        % Y3 = YaccVoltageKnown;
     end
 end
 

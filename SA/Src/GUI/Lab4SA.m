@@ -22,7 +22,7 @@ function varargout = Lab4SA(varargin)
 
 % Edit the above text to modify the response to help Lab4SA
 
-% Last Modified by GUIDE v2.5 26-Dec-2015 15:26:50
+% Last Modified by GUIDE v2.5 27-Dec-2015 15:43:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -223,7 +223,7 @@ function PlayButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 global t;
-t = timer('ExecutionMode','fixedDelay','Period',1,'TimerFcn',{ @DrawGraph, handles });
+t = timer('ExecutionMode','fixedDelay','Period',str2num(get(handles.FreqValue,'String')),'TimerFcn',{ @DrawGraph, handles });
 % t.timerFcn = @()DrawGraph();
 start(t);
 global value;
@@ -241,13 +241,25 @@ global hf2;
 [ R1, R2, R3, Y1, Y2, Y3 ] = hf2(value);
 x=value:value+size(Y1)-1;
 
-plot(handles.Y1Axes,x,Y1);
-plot(handles.Y2Axes,x,Y2);
-plot(handles.Y3Axes,x,Y3);
+        global Gridvoltage;
+        global Fuel;
+        global Accvoltage;
+
+%plot(handles.Y1Axes,x,Y1);
+%plot(handles.Y2Axes,x,Y2);
+%plot(handles.Y3Axes,x,Y3);
+
+plot(handles.Y1Axes,x,Gridvoltage(x));
+plot(handles.Y2Axes,x,Fuel(x));
+plot(handles.Y3Axes,x,Accvoltage(x));
 
 handles.Y1Axes.YLim = [8 14];
 handles.Y2Axes.YLim = [0 50];
 handles.Y3Axes.YLim = [8 14];
+
+handles.Y1Axes.XLim = [value, value+size(Y1,1)-1];
+handles.Y2Axes.XLim = [value, value+size(Y1,1)-1];
+handles.Y3Axes.XLim = [value, value+size(Y1,1)-1];
 
 set(handles.Y1RiskValue,'String',R1);
 set(handles.Y2RiskValue,'String',R2);
@@ -295,6 +307,29 @@ Drawgraph(hObject, eventdata, handles);
 % --- Executes during object creation, after setting all properties.
 function SliderValue_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to SliderValue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function FreqValue_Callback(hObject, eventdata, handles)
+% hObject    handle to FreqValue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of FreqValue as text
+%        str2double(get(hObject,'String')) returns contents of FreqValue as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function FreqValue_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to FreqValue (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
