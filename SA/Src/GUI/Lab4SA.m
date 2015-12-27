@@ -22,7 +22,7 @@ function varargout = Lab4SA(varargin)
 
 % Edit the above text to modify the response to help Lab4SA
 
-% Last Modified by GUIDE v2.5 27-Dec-2015 15:43:07
+% Last Modified by GUIDE v2.5 27-Dec-2015 16:34:34
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -235,7 +235,7 @@ global value;
 value = str2num(get(handles.SliderValue,'String'));
 value = value+1;
 set(handles.SliderValue,'String',value);
-set(handles.TimeSlider,'String',value);
+set(handles.TimeSlider,'Value',value);
 
 global hf2;
 [ R1, R2, R3, Y1, Y2, Y3 ] = hf2(value);
@@ -245,13 +245,13 @@ x=value:value+size(Y1)-1;
         global Fuel;
         global Accvoltage;
 
-%plot(handles.Y1Axes,x,Y1);
-%plot(handles.Y2Axes,x,Y2);
-%plot(handles.Y3Axes,x,Y3);
+plot(handles.Y1Axes,x,Y1);
+plot(handles.Y2Axes,x,Y2);
+plot(handles.Y3Axes,x,Y3);
 
-plot(handles.Y1Axes,x,Gridvoltage(x));
-plot(handles.Y2Axes,x,Fuel(x));
-plot(handles.Y3Axes,x,Accvoltage(x));
+%plot(handles.Y1Axes,x,Gridvoltage(x));
+%plot(handles.Y2Axes,x,Fuel(x));
+%plot(handles.Y3Axes,x,Accvoltage(x));
 
 handles.Y1Axes.YLim = [8 14];
 handles.Y2Axes.YLim = [0 50];
@@ -261,9 +261,7 @@ handles.Y1Axes.XLim = [value, value+size(Y1,1)-1];
 handles.Y2Axes.XLim = [value, value+size(Y1,1)-1];
 handles.Y3Axes.XLim = [value, value+size(Y1,1)-1];
 
-set(handles.Y1RiskValue,'String',R1);
-set(handles.Y2RiskValue,'String',R2);
-set(handles.Y3RiskValue,'String',R3);
+
 
 
 
@@ -330,6 +328,144 @@ function FreqValue_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function FreqValue_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to FreqValue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function Risk1_Callback(hObject, eventdata, handles)
+% hObject    handle to Risk1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Risk1 as text
+%        str2double(get(hObject,'String')) returns contents of Risk1 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Risk1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Risk1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function Risk2_Callback(hObject, eventdata, handles)
+% hObject    handle to Risk2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Risk2 as text
+%        str2double(get(hObject,'String')) returns contents of Risk2 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Risk2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Risk2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function Risk3_Callback(hObject, eventdata, handles)
+% hObject    handle to Risk3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Risk3 as text
+%        str2double(get(hObject,'String')) returns contents of Risk3 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Risk3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Risk3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function Risk4_Callback(hObject, eventdata, handles)
+% hObject    handle to Risk4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Risk4 as text
+%        str2double(get(hObject,'String')) returns contents of Risk4 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Risk4_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Risk4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function Risk5_Callback(hObject, eventdata, handles)
+% hObject    handle to Risk5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Risk5 as text
+%        str2double(get(hObject,'String')) returns contents of Risk5 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Risk5_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Risk5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function Risk6_Callback(hObject, eventdata, handles)
+% hObject    handle to Risk6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Risk6 as text
+%        str2double(get(hObject,'String')) returns contents of Risk6 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Risk6_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Risk6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
