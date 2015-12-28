@@ -4,54 +4,54 @@ ant:
   <mkdir dir="E:\SA\SA\SA\SA4\for_testing" />
   <mkdir dir="E:\SA\SA\SA\SA4\for_redistribution_files_only" />
 </ant>
-mcc -C -o SA4 -W WinMain:SA4 -T link:exe -d E:\SA\SA\SA\SA4\for_testing -v E:\SA\SA\SA\Src\GUI\Lab4SA.m -a E:\SA\SA\SA\Data -a E:\SA\SA\SA\MatExp -a E:\SA\SA\SA\Src 
+mcc -C -o SA4 -W WinMain:SA4 -T link:exe -d E:\SA\SA\SA\SA4\for_testing -v E:\SA\SA\SA\Src\GUI\Lab4SA.m -a E:\SA\SA\SA\Data -a E:\SA\SA\SA\MatExp -a E:\SA\SA\SA\SA4 -a E:\SA\SA\SA\Src 
 Compiler version: 6.0 (R2015a)
 Dependency analysis by REQUIREMENTS.
 [Warning: Adding path "E:\SA\SA\SA\Src\GUI" to Compiler path instance.] 
 Parsing file "E:\SA\SA\SA\Src\GUI\Lab4SA.m"
 	(Referenced from: "Compiler Command Line").
 Deleting 41 temporary MEX authorization files.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b831555_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b818571_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b819449_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b821456_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b818961_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b812653_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b8689_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b81999_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b88419_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b825290_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b88796_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b83526_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b824411_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b813470_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b832761_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b818787_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b817887_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b829873_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b812313_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b818482_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b831525_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b88709_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b86639_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b810626_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b87686_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b831536_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b81602_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b817738_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b820397_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b824963_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b817077_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b87665_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b81777_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b813894_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b86650_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b818358_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b827178_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b87492_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b87235_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b814482_1976.auth'.
-Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_007b824399_1976.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c10260_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c24575_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c18714_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c31327_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c832_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c11075_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c24891_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c4988_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c9641_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c17411_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c15173_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c11194_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c12314_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c7393_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c3943_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c30186_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c21907_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c21680_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c13820_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c2911_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c8150_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c25409_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c6783_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c9333_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c6893_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c20521_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c9595_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c18850_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c10060_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c19617_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c2972_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c17385_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c29876_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c26862_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c32092_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c7667_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c20221_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c15904_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c31198_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c22640_19724.auth'.
+Removing: 'C:\Users\Sanjo\AppData\Local\Temp\mathworks_tmp_04d0c15200_19724.auth'.
 Generating file "E:\SA\SA\SA\SA4\for_testing\readme.txt".
 Packaging...
 Adding custom icon E:\Program Files\MATLAB\MATLAB Production Server\R2015a\toolbox\compiler\Resources\default_icon.ico to E:\SA\SA\SA\SA4\for_testing\SA4.exe.
@@ -60,4 +60,4 @@ Finished embedding CTF archive. Deleting the external CTF archive.
 Creating the bundle...
 Web based installer created at E:\SA\SA\SA\SA4\for_redistribution\MyAppInstaller_web.exe.
 Packaging complete.
-Elapsed packaging time was: 1 minutes and 36 seconds.
+Elapsed packaging time was: 1 minutes and 33 seconds.

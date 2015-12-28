@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="2598839403" file="E:\SA\SA\SA\SA4.prj" location="E:\SA\SA\SA" name="SA4" preferred-package-location="E:\SA\SA\SA\SA4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="2949093447" file="E:\SA\SA\SA\SA4.prj" location="E:\SA\SA\SA" name="SA4" preferred-package-location="E:\SA\SA\SA\SA4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>SA4</param.appname>
     <param.icon />
     <param.icons />
@@ -77,6 +77,7 @@
     <fileset.resources>
       <file>${PROJECT_ROOT}\Data</file>
       <file>${PROJECT_ROOT}\MatExp</file>
+      <file>${PROJECT_ROOT}\SA4</file>
       <file>${PROJECT_ROOT}\Src</file>
     </fileset.resources>
     <fileset.package />
