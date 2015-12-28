@@ -15,7 +15,7 @@ X3size = 0;
 Ysize = 1;
 XN = X;
 for i=1:1:size(X, 2)
-    XN(:,i) = normalize(X(:,i), maxX, minX); 
+    XN(:,i) = normalize(X(:,i), maxX(i), minX(i)); 
 end
 YN = Y;
 for i=1:1:size(Y, 2)
@@ -131,6 +131,7 @@ for i=1:1:experAmount
     end
 end
 
-func = @(newX)PHIhrdsin(2, AMatrix([1:X1size],1), L([1:X1size*P1],4), newX);
+
+func = @(newX)PHIhrdsin(1, AMatrix([1:X1size],1), L([1:X1size*P1],1), newX);
 
 
