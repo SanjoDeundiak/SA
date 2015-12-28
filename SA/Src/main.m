@@ -17,7 +17,7 @@ function [hf1, hf2]=main()
         global Acc2;
         global Grid2;
         
-        [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage,Fuel2,Acc2,Grid2] = importData(filename);
+        [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage,Fuel2,Grid2,Acc2] = importData(filename);
     end
 
     function [ N, R, Y1, Y2, Y3, bVoltage, bFuel, time ] = computeDataForStartPos( startPos )
