@@ -3,9 +3,17 @@ function [ time ] = Resource( X )
 %   Detailed explanation goes here
     
     x = 1 : size(X, 2);
-    p = polyfit(x, X, 5);
+    
+    data = iddata(X', x'); 
+    T = getTrend(data, 1);
+    
+    time = abs((1 - T.OutputOffset) / T.OutputSlope);
+    return
+    
+    p = polyfit(x, X, 15);
     p(size(X,2)) = -1;
     r = roots(p);
+    
     
     if (isempty(r))
         time = Inf;

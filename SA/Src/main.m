@@ -81,15 +81,6 @@ function [hf1, hf2]=main()
         R1N = min(1, 1 - (1 - 2 * riskAccVoltageN) * (1 - 2 * riskGridVoltageN) * (1 - 2 * riskFuelN));
         R1A = min(1, 1 - (1 - 2 * riskAccVoltageA) * (1 - 2 * riskGridVoltageA) * (1 - 2 * riskFuelA));
         
-        RArr = [RArr R1A];
-        
-        if (size(RArr, 2) > N03)
-            RArr = RArr(2: size(RArr,2));
-            time = Resource(RArr);
-        else
-            time = Inf;
-        end
-        
         R2AK = 1-(1-RiskLinear( YaccVoltageKnown(size(YaccVoltageKnown,1)), YAccVoltageN, YAccVoltageA))...
             *(1-RiskLinear( YgridVoltageKnown(size(YgridVoltageKnown, 1)), YGridVoltageN,  YGridVoltageA ))...
             *(1-RiskLinear( YfuelKnown(size(YfuelKnown,1)), YFuelN, YFuelA ));
@@ -103,6 +94,15 @@ function [hf1, hf2]=main()
         R3AP = 1-(1-RiskStatic( YaccVoltagePredict(size(YaccVoltagePredict,1)), 12.2, YAccVoltageA))...
             *(1-RiskStatic( YgridVoltagePredict(size(YgridVoltagePredict, 1)), 12.2,  YGridVoltageA ))...
             *(1-RiskStatic( YfuelPredict(size(YfuelPredict,1)), 15, YFuelA ));
+        
+        RArr = [RArr R1A];
+        
+        if (size(RArr, 2) > N03)
+            RArr = RArr(2: size(RArr,2));
+            time = Resource(RArr);
+        else
+            time = Inf;
+        end
         
         R = [R1N, R1A, R2AK, R2AP, R3AK, R3AP];
 
