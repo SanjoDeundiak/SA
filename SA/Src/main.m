@@ -13,8 +13,11 @@ function [hf1, hf2]=main()
         global Gridvoltage;
         global Fuel;
         global Accvoltage;
+        global Fuel2;
+        global Acc2;
+        global Grid2;
         
-        [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename);
+        [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage,Fuel2,Acc2,Grid2] = importData(filename);
     end
 
     function [ N, R, Y1, Y2, Y3, bVoltage, bFuel, time ] = computeDataForStartPos( startPos )
@@ -28,6 +31,9 @@ function [hf1, hf2]=main()
         global Fuel;
         global Accvoltage;
         global RArr;
+        global Fuel2;
+        global Acc2;
+        global Grid2;
         
         if (startPos == 1)
             RArr = [];
@@ -107,10 +113,14 @@ function [hf1, hf2]=main()
         R = [R1N, R1A, R2AK, R2AP, R3AK, R3AP];
 
         %Compute risk resource
+        
+        YgridVoltagePredict2 = Grid2(startPos+N02:startPos + N02 + N03 - 1);
+        YfuelPredict2 = Fuel2(startPos+N02:startPos + N02 + N03 - 1);
+        YaccVoltagePredict2 = Acc2(startPos+N02:startPos + N02 + N03 - 1);
 
-        Y1 = vertcat(YgridVoltageKnown, YgridVoltagePredict);
-        Y2 = vertcat(YfuelKnown, YfuelPredict);
-        Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict);
+        Y1 = vertcat(YgridVoltageKnown, YgridVoltagePredict2);
+        Y2 = vertcat(YfuelKnown, YfuelPredict2);
+        Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict2);
         
         [b1, b2] = CheckDelta(startPos + N02);
         

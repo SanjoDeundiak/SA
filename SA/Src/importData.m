@@ -1,4 +1,4 @@
-function [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename, startRow, endRow)
+function [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage,Fuel2,Grid2,Acc2] = importData(filename, startRow, endRow)
 %IMPORTFILE Import numeric data from a text file as column vectors.
 %   [NUMBER,TIMESTAMP,ACCVOLTAGE,CRANKSHAFT,ADDITIONALGENERATORPOWER,CONSUMPTIONPOWER,GRIDVOLTAGE,FUEL,ACCVOLTAGE]
 %   = IMPORTFILE(FILENAME) Reads data from text file FILENAME for the
@@ -33,7 +33,7 @@ end
 %	column8: double (%f)
 %   column9: double (%f)
 % For more information, see the TEXTSCAN documentation.
-formatSpec = '%f%f%f%f%f%f%f%f%f%[^\n\r]';
+formatSpec = '%f%f%f%f%f%f%f%f%f%f%f%f%f%[^\n\r]';
 
 %% Open the text file.
 fileID = fopen(filename,'r');
@@ -70,5 +70,7 @@ Consumptionpower = dataArray{:, 6};
 Gridvoltage = dataArray{:, 7};
 Fuel = dataArray{:, 8};
 Accvoltage = dataArray{:, 9};
-
+Fuel2 =dataArray{:, 10};
+Grid2=dataArray{:, 11};
+Acc2 =dataArray{:, 12};
 
