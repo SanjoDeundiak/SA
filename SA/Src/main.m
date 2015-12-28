@@ -17,7 +17,7 @@ function [hf1, hf2]=main()
         [Number,TimeStamp,AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower,Gridvoltage,Fuel,Accvoltage] = importData(filename);
     end
 
-    function [ N, R, Y1, Y2, Y3, bVoltage, bFuel ] = computeDataForStartPos( startPos )
+    function [ N, R, Y1, Y2, Y3, bVoltage, bFuel, time ] = computeDataForStartPos( startPos )
         global Number;
         global TimeStamp;
         global AccVoltage;
@@ -29,7 +29,7 @@ function [hf1, hf2]=main()
         global Accvoltage;
         global RArr;
         
-        if (startPos == 2)
+        if (startPos == 1)
             RArr = [];
         end
         
@@ -82,6 +82,13 @@ function [hf1, hf2]=main()
         R1A = min(1, 1 - (1 - 2 * riskAccVoltageA) * (1 - 2 * riskGridVoltageA) * (1 - 2 * riskFuelA));
         
         RArr = [RArr R1A];
+        
+        if (size(RArr, 2) > N03)
+            RArr = RArr(2: size(RArr,2));
+            time = Resource(RArr);
+        else
+            time = Inf;
+        end
         
         R2AK = 1-(1-RiskLinear( YaccVoltageKnown(size(YaccVoltageKnown,1)), YAccVoltageN, YAccVoltageA))...
             *(1-RiskLinear( YgridVoltageKnown(size(YgridVoltageKnown, 1)), YGridVoltageN,  YGridVoltageA ))...
