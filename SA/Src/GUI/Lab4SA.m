@@ -268,7 +268,7 @@ function [] = DrawGraph(hObject, eventdata, handles)
     %set(handles.TimeSlider,'Value',value);
 
     global hf2;
-    [ N02,  R1, Y1, Y2, Y3, bVoltage, bFuel ] = hf2(value);
+    [ N02,  R1, Y1, Y2, Y3, bVoltage, bFuel,riskResource ] = hf2(value);
     x=value:value+size(Y1)-1;
     N03 = size(Y1) - N02;
 
@@ -308,6 +308,7 @@ function [] = DrawGraph(hObject, eventdata, handles)
     else
         set(handles.BFuel,'String','неисправен');
     end
+    set(handles.RiskResource,'String',riskResource);
     set(handles.XTable,'Data',[(value:value+size(Y1,1)-1)',Y1,Y2,Y3]);
     
     global player
