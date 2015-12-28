@@ -73,7 +73,7 @@ guidata(hObject, handles);
 % importing into table
 %    set(handles.XTable,'Data',[AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower]);
     global player;
-    [signal, Fs] = audioread('Data\donna_summer-hot_stuff.mp3');
+    [signal, Fs] = audioread('Data\colalarm.wav');
     player = audioplayer(signal, Fs);
     
     maxSlider = size(Number,1);
