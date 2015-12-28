@@ -22,7 +22,7 @@ function varargout = Lab4SA(varargin)
 
 % Edit the above text to modify the response to help Lab4SA
 
-% Last Modified by GUIDE v2.5 27-Dec-2015 23:47:18
+% Last Modified by GUIDE v2.5 28-Dec-2015 05:38:20
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -574,6 +574,29 @@ function BVoltage_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function BVoltage_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to BVoltage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function RiskResource_Callback(hObject, eventdata, handles)
+% hObject    handle to RiskResource (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of RiskResource as text
+%        str2double(get(hObject,'String')) returns contents of RiskResource as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function RiskResource_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to RiskResource (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
