@@ -27,6 +27,11 @@ function [hf1, hf2]=main()
         global Gridvoltage;
         global Fuel;
         global Accvoltage;
+        global RArr;
+        
+        if (startPos == 2)
+            RArr = [];
+        end
         
         N02 = 40;
         N03 = 10;
@@ -76,6 +81,8 @@ function [hf1, hf2]=main()
         R1N = min(1, 1 - (1 - 2 * riskAccVoltageN) * (1 - 2 * riskGridVoltageN) * (1 - 2 * riskFuelN));
         R1A = min(1, 1 - (1 - 2 * riskAccVoltageA) * (1 - 2 * riskGridVoltageA) * (1 - 2 * riskFuelA));
         
+        RArr = [RArr R1A];
+        
         R2AK = 1-(1-RiskLinear( YaccVoltageKnown(size(YaccVoltageKnown,1)), YAccVoltageN, YAccVoltageA))...
             *(1-RiskLinear( YgridVoltageKnown(size(YgridVoltageKnown, 1)), YGridVoltageN,  YGridVoltageA ))...
             *(1-RiskLinear( YfuelKnown(size(YfuelKnown,1)), YFuelN, YFuelA ));
@@ -98,7 +105,7 @@ function [hf1, hf2]=main()
         Y2 = vertcat(YfuelKnown, YfuelPredict);
         Y3 = vertcat(YaccVoltageKnown, YaccVoltagePredict);
         
-        [b1, b2] = CheckDelta(startPos);
+        [b1, b2] = CheckDelta(startPos + N02);
         
         bVoltage = b1;
         bFuel = b2;
