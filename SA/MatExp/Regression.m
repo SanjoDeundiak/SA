@@ -1,5 +1,5 @@
 clear all;
-load('DataOwn.txt');
+load('Data1.txt');
 
 % A = Data(:,:);
 % A
