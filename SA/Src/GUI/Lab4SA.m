@@ -72,6 +72,9 @@ guidata(hObject, handles);
 %     
 % importing into table
 %    set(handles.XTable,'Data',[AccVoltage,Crankshaft,Additionalgeneratorpower,Consumptionpower]);
+    global player;
+    [signal, Fs] = audioread('Data\donna_summer-hot_stuff.mp3');
+    player = audioplayer(signal, Fs);
     
     maxSlider = size(Number,1);
     
@@ -305,8 +308,17 @@ function [] = DrawGraph(hObject, eventdata, handles)
     else
         set(handles.BFuel,'String','неисправен');
     end
-   
-    set(handles.XTable,'Data',[(value:value+size(Y1,1)-1)',Y1,Y2,Y3,zeros(size(Y1,1),1)]);
+    set(handles.XTable,'Data',[(value:value+size(Y1,1)-1)',Y1,Y2,Y3]);
+    
+    global player
+    if (max(R1)>=1)
+        play(player);
+    end
+    
+    if (max(R1)<1)
+        stop(player);
+    end
+    
 
 
 
@@ -320,6 +332,7 @@ function PauseButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.PlayButton,'Enable','on');
 global t;
+stop(t);
 delete(t);
 
 
